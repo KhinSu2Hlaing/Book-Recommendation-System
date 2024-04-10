@@ -21,7 +21,7 @@ st.header("Book Recommender System")
 popular = pickle.load(open('popular.pkl','rb'))
 books = pickle.load(open('books.pkl','rb'))
 pt = pickle.load(open('pt.pkl','rb'))
-similarity_score = pickle.load(open('similarity_score.pkl','rb'))
+similarity_score = pickle.load(open('similarity_scores.pkl','rb'))
 
 book_list = pt.index.values
 image_url = popular['Image-URL-M'].tolist()
