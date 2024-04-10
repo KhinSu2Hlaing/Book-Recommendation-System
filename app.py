@@ -27,8 +27,8 @@ book_list = pt.index.values
 image_url = popular['Image-URL-M'].tolist()
 book_title = popular['Book-Title'].tolist() 
 book_author = popular['Book-Author'].tolist()
-total_ratings = popular['total Ratings'].tolist()
-avg_ratings = popular['Total Average Ratings'].tolist()
+total_ratings = popular['num_ratings'].tolist()
+avg_ratings = popular['avg_rating'].tolist()
 
 st.sidebar.title("Top 50 Books")
 if st.sidebar.button("SHOW"):
