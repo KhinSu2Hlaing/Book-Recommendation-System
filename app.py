@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 
-def recommend_book(book):
+def recommend(book_name):
     index = np.where(pt.index==book)[0][0]
     similar_books = sorted(list(enumerate(similarity_score[index])),key=lambda x:x[1],reverse=True)[1:6]
     
