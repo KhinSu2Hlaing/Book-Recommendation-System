@@ -141,7 +141,7 @@ if st.sidebar.button("SHOW"):
         st.text("Avg.Rating:" + str(round(avg_ratings[19],2))) 
 
 st.sidebar.title("Recommend Books")
-selected_book = st.sidebar.selectbox("Type or select a book from the dropdown",book_list)
+selected_book_name = st.sidebar.selectbox("Type or select a book from the dropdown",book_list)
 if st.sidebar.button("Recommend Me"):
     moviee = recommend(selected_book_name)
     col1, col2, col3, col4, col5 = st.columns(5)
