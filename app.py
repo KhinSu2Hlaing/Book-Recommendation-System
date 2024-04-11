@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 def recommend(book_name):
-    index = np.where(pt.index==book)[0][0]
+    index = np.where(pt.index==book_name)[0][0]
     similar_books = sorted(list(enumerate(similarity_score[index])),key=lambda x:x[1],reverse=True)[1:6]
     
     data = []
