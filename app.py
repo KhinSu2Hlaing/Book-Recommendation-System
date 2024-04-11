@@ -143,7 +143,7 @@ if st.sidebar.button("SHOW"):
 st.sidebar.title("Recommend Books")
 selected_book = st.sidebar.selectbox("Type or select a book from the dropdown",book_list)
 if st.sidebar.button("Recommend Me"):
-    moviee = recommend_book(selected_book)
+    moviee = recommend(selected_book_name)
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
         st.image(moviee[0][2])
