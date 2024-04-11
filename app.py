@@ -140,7 +140,7 @@ if st.sidebar.button("SHOW"):
         st.text("Ratings:" + str(total_ratings[19]))
         st.text("Avg.Rating:" + str(round(avg_ratings[19],2))) 
 
-st.sidebar.title("Recommend Books")
+st.sidebar.title("Recommend Books By Book's Title")
 selected_book_name = st.sidebar.selectbox("Type or select a book from the dropdown",book_list)
 if st.sidebar.button("Recommend Me"):
     moviee = recommend(selected_book_name)
@@ -165,3 +165,38 @@ if st.sidebar.button("Recommend Me"):
         st.image(moviee[4][2])
         st.text(moviee[4][0])
         st.text(moviee[4][1])
+ratings_with_name = pickle.load(open('ratings_with_name.pkl','rb'))
+model = pickle.load(open('model.pkl','rb'))
+def recommend_books(user_id, n=10):
+    # List all unique book titles
+    all_books = ratings_with_name['Book-Title'].unique()
+
+    # Remove books already rated by the user
+    rated_books = ratings_with_name[ratings_with_name['User-ID'] == user_id]['Book-Title'].values
+    books_to_predict = [book for book in all_books if book not in rated_books]
+
+    # Predict ratings for remaining books
+    predictions = []
+    for book in books_to_predict:
+        pred = model.predict(user_id, book)
+        predictions.append((book, pred.est))
+
+    # Sort predictions by estimated rating
+    predictions.sort(key=lambda x: x[1], reverse=True)
+
+    # Get top N recommendations
+    top_n = predictions[:n]
+
+    return top_n
+    
+user= pt.columns.values
+
+st.sidebar.title("Recommend Books By User_ID ")
+selected_user = st.sidebar.selectbox("Type or select a user_id from the dropdown",user)
+if st.sidebar.button("Recommend Me", type="primary"):
+    bookk = recommend_books(selected_user)
+
+    st.write("Top Recommended Books:")
+    for idx, (book_title, _) in enumerate(bookk, start=1):
+        st.write(f"{idx}. {book_title}")
+
